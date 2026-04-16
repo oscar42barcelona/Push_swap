@@ -18,4 +18,23 @@
 # include <limits.h>
 # include "libft/libft.h"
 
+typedef struct s_stack
+{
+	int				value;
+	struct s_stack	*next;
+}	t_stack;
+
+// Analisis Léxico y Validación
+int		is_valid_format(char *str);
+int		ft_atol_safe(char *str, long *result);
+
+// Analisis contextual y estructura
+int		check_duplicate(t_stack *stack, int value);
+int		add_to_stack(t_stack **stack, int value);
+void	free_stack(t_stack **stack);
+
+// Utils
+void	free_matrix(char **matrix);
+void	error_exit(t_stack **stack, char **matrix);
+
 #endif
