@@ -24,6 +24,20 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+typedef enum e_algo
+{
+	ALG_ADAPTIVE,
+	ALG_SIMPLE,
+	ALG_MEDIUM,
+	ALG_COMPLEX
+}	t_alg;
+
+typedef struct s_flags
+{
+	int		bench;// 0 = apagado, 1 = encendido
+	t_alg	strategy;
+}	t_flags;
+
 // Analisis Léxico y Validación
 int		is_valid_format(char *str);
 int		ft_atol_safe(char *str, long *result);

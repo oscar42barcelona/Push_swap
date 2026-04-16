@@ -3,66 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
+/*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/19 17:26:20 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/01/19 17:26:28 by osuarez-         ###   ########.fr       */
+/*   Created: 2026/04/08 23:20:49 by jgarcia4          #+#    #+#             */
+/*   Updated: 2026/04/08 23:20:52 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-int ft_count(int n)
+static int	count_len(long num)
 {
-    int c;
-    
-    c = 0;
-    while (n > 0)
-    {
-        n = n / 10;
-        c++;
-    }
-    return (c);
+	int	len;
+
+	len = 0;
+	if (num <= 0)
+		len = 1;
+	if (num < 0)
+		num = -num;
+	while (num > 0)
+	{
+		num /= 10;
+		len++;
+	}
+	return (len);
 }
 
-
-char    *ft_itoa(int n)
+static void	fill_str(char *str, long num, int len)
 {
-    char    *string;
-    int     i;
-    int     c;
-    int     s;
-
-    s = 0;
-    if (n < 0)
-    {
-        s = 1;
-        n = n * -1;
-    }    
-    c = ft_count(n);
-    string = malloc((c + 1 + s) * sizeof(char));
-    if (s == 1)
-    {
-        string[0] = '-';
-        
-    }
-    i = c - 1 + s;
-    while (i)
-    {
-        string[i] = (n % 10) + '0';
-        n = n / 10;
-        i--;
-    }
-    string[i + s] = n + '0';
-    string[c + 1] = '\0';
-    return (string);
+	str[len] = '\0';
+	if (num == 0)
+	{
+		str[0] = '0';
+		return ;
+	}
+	if (num < 0)
+	{
+		str[0] = '-';
+		num = -num;
+	}
+	while (num > 0)
+	{
+		len--;
+		str[len] = (num % 10) + '0';
+		num /= 10;
+	}
 }
 
-int main(void)
+char	*ft_itoa(int n)
 {
-    printf("%s", ft_itoa(-1998989));
-    return (0);
+	char	*str;
+	int		len;
+	long	num;
+
+	num = n;
+	len = count_len(num);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	fill_str(str, num, len);
+	return (str);
 }
-
-

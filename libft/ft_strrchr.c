@@ -3,42 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
+/*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/13 19:44:00 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/01/13 20:50:24 by osuarez-         ###   ########.fr       */
+/*   Created: 2026/04/08 23:34:01 by jgarcia4          #+#    #+#             */
+/*   Updated: 2026/04/08 23:34:04 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include <stdio.h>
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
-	char	*p;
-	size_t	size;
+	long	len;
 
-	i = 0;
-	size = ft_strlen(s);
-	while (i <= size)
+	len = ft_strlen(s);
+	while (len >= 0)
 	{
-		if ((unsigned char)s[size - i] == (unsigned char)c)
-		{
-			p = (char *)&s[size - i];
-			return (p);
-		}
-		i++;
+		if (s[len] == (char)c)
+			return ((char *)(s + len));
+		len--;
 	}
-	return (NULL);
+	return (0);
 }
-/*
-int main(void)
-{
-    //int   pos;
-    const char  cc[] = "Holapeooooooorr";
-    char    *p = ft_strrchr(cc, 'o');
-    //pos = p - cc;
-    printf("%s", p);
-    return (0);
-}*/

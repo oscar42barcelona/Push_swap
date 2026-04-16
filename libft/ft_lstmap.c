@@ -3,77 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osuarez- <osuarez-@student.42barcelona>     +#+  +:+       +#+        */
+/*   By: jgarcia4 <jgarcia4@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/19 14:37:22 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/01/19 17:18:49 by osuarez-         ###   ########.fr       */
+/*   Created: 2026/04/14 19:28:48 by jgarcia4          #+#    #+#             */
+/*   Updated: 2026/04/14 19:28:49 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-#include <stdio.h>
-*/
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new_list;
+	t_list	*new_list_head;
 	t_list	*new_node;
-	void	*content;
+	void	*new_content;
+	t_list	*current;
 
 	if (!lst || !f || !del)
 		return (NULL);
-	new_list = NULL;
-	while (lst)
+	new_list_head = NULL;
+	current = lst;
+	while (current != NULL)
 	{
-		content = f(lst->content);
-		new_node = ft_lstnew(content);
+		new_content = f(current->content);
+		new_node = ft_lstnew(new_content);
 		if (!new_node)
 		{
-			del(content);
-			ft_lstclear(&new_list, del);
+			del(new_content);
+			ft_lstclear(&new_list_head, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&new_list, new_node);
-		lst = lst->next;
+		ft_lstadd_back(&new_list_head, new_node);
+		current = current->next;
 	}
-	return (new_list);
+	return (new_list_head);
 }
-
-/*
-static void	*dup_int(void *content)
-{
-	int	*new;
-
-	new = malloc(sizeof(int));
-	if (!new)
-		return (NULL);
-	*new = *(int *)content * 2;
-	return (new);
-}
-
-static void	del_int(void *content)
-{
-	free(content);
-}
-
-int	main(void)
-{
-	t_list	*a;
-	t_list	*b;
-	t_list	*new;
-	int		x;
-	int		y;
-
-	x = 1;
-	y = 2;
-	a = ft_lstnew(&x);
-	b = ft_lstnew(&y);
-	a->next = b;
-	new = ft_lstmap(a, dup_int, del_int);
-	ft_lstiter(new, del_int);
-	ft_lstclear(&new, del_int);
-	return (0);
-}
-*/
-

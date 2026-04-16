@@ -3,38 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
+/*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 12:31:50 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/01/15 18:53:16 by osuarez-         ###   ########.fr       */
+/*   Created: 2026/04/08 23:27:16 by jgarcia4          #+#    #+#             */
+/*   Updated: 2026/04/08 23:27:19 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include <stdio.h>
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*ss1;
-	unsigned char	*ss2;
-	size_t			p;
+	size_t				i;
+	const unsigned char	*str1;
+	const unsigned char	*str2;
 
-	if (n == 0)
-		return (0);
-	ss1 = (unsigned char *)s1;
-	ss2 = (unsigned char *)s2;
-	p = 0;
-	while (p < n)
+	i = 0;
+	str1 = (const unsigned char *)s1;
+	str2 = (const unsigned char *)s2;
+	while (i < n)
 	{
-		if (ss1[p] != ss2[p])
-			return (ss1[p] - ss2[p]);
-		p++;
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
 	}
 	return (0);
 }
-/*
-int	main(void)
-{
-	printf("%d", ft_memcmp("hola", "holo", 5));
-	return (0); 
-}*/

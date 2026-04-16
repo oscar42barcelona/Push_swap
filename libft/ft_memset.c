@@ -3,41 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
+/*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/05 18:22:32 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/01/08 20:14:49 by osuarez-         ###   ########.fr       */
+/*   Created: 2026/04/08 23:28:25 by jgarcia4          #+#    #+#             */
+/*   Updated: 2026/04/08 23:28:29 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t			a;
-	unsigned char	*b;
+	unsigned char	*mem;
+	size_t			i;
 
-	b = (unsigned char *)s;
-	a = 0;
-	while (a < n)
+	i = 0;
+	mem = (unsigned char *)b;
+	while (i < len)
 	{
-		b[a] = (unsigned char)c;
-		a++;
+		mem[i] = (unsigned char) c;
+		i++;
 	}
-	return (s);
+	return (b);
 }
-/*
-int	main(void)
-{
-	char string[5] = "Hola";
-	void *s;
-	size_t b;
-		
-	b = 4;
-	s = &string[0];
-	printf("%s \n", string);
-	ft_memset(s, 'a', b);
-	printf("%s", string);
-	return (0);	
-}*/

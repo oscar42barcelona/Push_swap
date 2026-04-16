@@ -3,45 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
+/*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/08 21:06:08 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/01/15 20:08:25 by osuarez-         ###   ########.fr       */
+/*   Created: 2026/04/08 23:27:59 by jgarcia4          #+#    #+#             */
+/*   Updated: 2026/04/08 23:28:04 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include <stdio.h>
-void	*ft_memmove(void *dest, const void *src, size_t n)
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	unsigned char	*d;
 	unsigned char	*s;
 
-	d = (unsigned char *)dest;
+	d = (unsigned char *)dst;
 	s = (unsigned char *)src;
-	if (dest == (void *)0 && src == (void *)0)
-		return (dest);
-	if (dest < src + n && src < dest)
+	if (d == s)
+		return (dst);
+	if (d > s)
 	{
-		while (n > 0)
+		while (len > 0)
 		{
-			d[n - 1] = s[n - 1];
-			n--;
+			len--;
+			d[len] = s[len];
 		}
 	}
 	else
 	{
-		ft_memcpy(dest, src, n);
+		while (len > 0)
+		{
+			*d++ = *s++;
+			len--;
+		}
 	}
-	return (dest);
+	return (dst);
 }
-/*
-int main(void)
-{
-    size_t a = 4;
-    char src[] = "Holamellamopepe";
-	
-    ft_memmove(&src[1], &src[3], a);
-    printf("%s\n", src);
-    return (0);
-}*/

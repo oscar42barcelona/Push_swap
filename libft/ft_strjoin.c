@@ -3,46 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
+/*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/17 10:51:54 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/15 17:32:05 by osuarez-         ###   ########.fr       */
+/*   Created: 2026/04/08 23:31:33 by jgarcia4          #+#    #+#             */
+/*   Updated: 2026/04/08 23:31:37 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
 #include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*p;
-	size_t	a;
+	char	*str;
 	size_t	i;
+	size_t	j;
 
 	if (!s1 || !s2)
-		return (NULL);
-	a = ft_strlen(s1);
-	p = malloc(a + ft_strlen(s2) + 1);
-	if (!p)
-		return (NULL);
+		return (0);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (0);
 	i = 0;
 	while (s1[i])
 	{
-		p[i] = s1[i];
+		str[i] = s1[i];
 		i++;
 	}
-	i = 0;
-	while (s2[i])
+	j = 0;
+	while (s2[j])
 	{
-		p[a + i] = s2[i];
-		i++;
+		str[i + j] = s2[j];
+		j++;
 	}
-	p[a + i] = '\0';
-	return (p);
+	str[i + j] = '\0';
+	return (str);
 }
-/*
-int main(void)
-{
-    printf("%s", ft_strjoin("Pedro", " buenas"));
-    return 0;
-}*/

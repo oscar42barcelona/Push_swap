@@ -3,37 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
+/*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 11:40:24 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/01/15 17:00:14 by osuarez-         ###   ########.fr       */
+/*   Created: 2026/04/08 23:27:05 by jgarcia4          #+#    #+#             */
+/*   Updated: 2026/04/08 23:27:06 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include <stdio.h>
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t			p;
-	unsigned char	*ss;	
+	const unsigned char			*ptr;
+	size_t						i;
 
-	if (n == 0)
-		return (NULL);
-	p = 0;
-	ss = (unsigned char *)s;
-	while (p < n)
+	i = 0;
+	ptr = (const unsigned char *)s;
+	while (i < n)
 	{
-		if (ss[p] == (unsigned char)c)
-			return (&ss[p]);
-		p++;
+		if (ptr[i] == (unsigned char)c)
+			return ((void *)(ptr + i));
+		i++;
 	}
-	return (NULL);
-}
-/*
-int	main(void)
-{
-	unsigned char   *ss = ft_memchr("peddrolo", 'd', 0);
-	printf("%s", ss);
 	return (0);
-}*/
+}

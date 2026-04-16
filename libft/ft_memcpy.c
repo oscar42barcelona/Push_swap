@@ -3,43 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
+/*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/08 19:28:25 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/01/08 20:59:50 by osuarez-         ###   ########.fr       */
+/*   Created: 2026/04/08 23:27:31 by jgarcia4          #+#    #+#             */
+/*   Updated: 2026/04/08 23:27:32 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include "stdio.h"
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	size_t			a;
-	unsigned char	*d;
-	unsigned char	*s;
 
-	a = 0;
-	d = (unsigned char *)dest;
-	s = (unsigned char *)src;
-	if (dest == (void *)0 && src == (void *)0)
-		return (dest);
-	while (a < n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	unsigned char		*d;
+	const unsigned char	*s;
+	size_t				i;
+
+	if (!dst && !src)
+		return (NULL);
+	i = 0;
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+	while (i < n)
 	{
-		d[a] = s[a];
-		a++;
+		d[i] = s[i];
+		i++;
 	}
-	return (dest);
+	return (dst);
 }
-/*
-int	main(void)
-{
-	size_t a = 4;
-	char *src = "Hola";
-	char dest[5] = "p";
-	void *d = dest;
-	void *s = src;
-
-	ft_memcpy(d, s, a);
-	printf("%s\n %s", src, dest);
-	return (0);
-}*/
