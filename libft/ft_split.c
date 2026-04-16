@@ -6,12 +6,12 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 10:35:05 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/01/19 18:01:03 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/16 14:45:00 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+//#include <stdio.h>
 
 int	ft_count(char const *p, char c)
 {
@@ -85,7 +85,7 @@ char	**ft_split(char const *s, char c)
 	array[a] = (NULL);
 	return (array);
 }
-
+/*
 int	main(void)
 {
 	char	**array;
@@ -99,4 +99,4 @@ int	main(void)
 		i++;
 	}
 	return 0;
-}
+}*/
