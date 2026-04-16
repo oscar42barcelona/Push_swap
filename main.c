@@ -11,48 +11,62 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-char *big_mama(char **argv)
+// Liberar un array
+void	free_matrix(char **matrix)
 {
-	int		i;
-	char	*buffer;
-	char	*aux;
+	int	i;
 
-	i = 1;
-	buffer = argv[i];
-	while (argv[i + 1])
+	i = 0;
+	if (!matrix)
+		return ;
+	while (matrix[i])
 	{
-		aux = ft_strjoin_m(buffer, argv[i + 1]);
-		if (i > 1)
-			free (buffer);
-		buffer = aux;
+		free(matrix[i]);
 		i++;
 	}
-	return (buffer);
+	free(matrix);
+}
+
+// Impresion de error
+void	error_exit(t_stack **stack, char **matrix)
+{
+	ft_putstr_fd("Error\n", 2);
+	free_stack(stack);
+	free_matrix(matrix);
+	exit(1);
 }
 
 int	main(int argc, char **argv)
 {
+	t_stack	*a;
+	char	**tokens;
+	long	number;
+	int		i;
+	int		j;
+
+	a = NULL;
 	if (argc < 2)
 		return (0);
-	char	*bm;
-	char	**matrix;
-
-	bm = big_mama(argv);
-	matrix = ft_split (bm, ' '); //splitazo
-	printf ("%s", bm);
-	free (bm);
+	i = 1;
+	while (i < argc)
+	{
+		tokens = ft_split(argv[i], ' ');
+		if (!tokens || !tokens[0])
+			error_exit(&a, tokens);
+		j = 0;
+		while (tokens[j])
+		{
+			if (!is_valid_format(tokens[j]) || !ft_atol_safe(tokens[j], &number))
+				error_exit(&a, tokens);
+			if (check_duplicate(a, (int)number) || !add_to_stack(&a, (int)number))
+				error_exit(&a, tokens);
+			j++;
+		}
+		free_matrix(tokens);
+		i++;
+	}
+	// PENDIENTE: Ejecutar algoritmos de ordenación
+	free_stack(&a);
 	return (0);
 }
-
-/*
-int main(int argc, char **argv)
-{
-	if (argc <= 1)
-		return (0); //0_1
-	int		i;
-	char	**matrix;
-	
-	i = 1;
-}*/
