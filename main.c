@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:05:03 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/15 18:21:37 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/16 13:56:10 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	char	*bm;
+	char	**matrix;
 
 	bm = big_mama(argv);
+	matrix = ft_split (bm, ' '); //splitazo
 	printf ("%s", bm);
 	free (bm);
 	return (0);
