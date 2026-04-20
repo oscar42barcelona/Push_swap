@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:25:39 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/18 13:33:14 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/20 16:54:24 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,20 @@ int		add_to_stack(t_stack **stack, int value);
 void	free_stack(t_stack **stack);
 
 // Utils
+//*******gestion de errores
 void	free_matrix(char **matrix);
 void	error_exit(t_stack **stack, char **matrix);
+//*******operaciones listas
+void	sa(t_stack **a);
+void	sb(t_stack **b);
+void	ss(t_stack **a, t_stack **b);
+void	pa(t_stack **a, t_stack **b);
+void	pb(t_stack **a, t_stack **b);
+void	ra(t_stack **a);
+void	rb(t_stack **b);
+void	rr(t_stack **a, t_stack **b);
+void	rra(t_stack **a);
+void	rrb(t_stack **b);
+void    rrr(t_stack **a, t_stack **b);
 
 #endif

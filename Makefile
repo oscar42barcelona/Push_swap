@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRC = main.c parser.c stack.c
+SRC = main.c parser.c stack.c utils/op_1.c utils/op_2.c utils/op_3.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
