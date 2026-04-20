@@ -6,21 +6,19 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 14:26:04 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/20 16:52:38 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/20 17:03:06 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
  
 void	sa(t_stack **a)
 {
 	t_stack *first;
 	t_stack *second;
 
-	if (!a)
-		return;
-	if (ft_lstsize(*a) < 2)
-		return;
+	if (!a || !*a || !(*a)->next)
+		return; //o gestionarlo como error...
 	first = *a;
 	second = (*a)->next;
 	first->next = second->next;
@@ -33,10 +31,8 @@ void    sb(t_stack **b)
     t_stack *first;
     t_stack *second;
 
-    if (!b)
-        return;
-    if (ft_lstsize(*b) < 2)
-        return; //o gestionarlo como error...
+	if (!b || !*b || !(*b)->next)
+		return; //o gestionarlo como error...
     first = *b;
     second = (*b)->next;
     first->next = second->next;

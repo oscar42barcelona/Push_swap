@@ -1,12 +1,12 @@
 NAME = push_swap
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRC = main.c parser.c stack.c utils/op_1.c utils/op_2.c utils/op_3.c
+SRC = main.c parser.c stack.c utils/op_1.c utils/op_2.c utils/op_3.c compute_disorder.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

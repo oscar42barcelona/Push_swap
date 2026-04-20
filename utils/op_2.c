@@ -6,11 +6,11 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:12:48 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/20 16:53:28 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/20 16:58:18 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	ra(t_stack **a)
 {

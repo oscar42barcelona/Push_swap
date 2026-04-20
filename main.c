@@ -6,11 +6,12 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:05:03 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/16 13:56:10 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:43:39 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 // Liberar un array
 void	free_matrix(char **matrix)
@@ -99,6 +100,7 @@ int	main(int argc, char **argv)
 		free_matrix(tokens);
 		i++;
 	}
+	printf ("el indice es: %d", compute_disorder(&a));
 	// TODO: Ejecutar algoritmos de ordenación
 	//printf("[DEBUG] Bench: %d | Strategy: %d\n", flags.bench, flags.strategy); // BORRAR LUEGO
 	free_stack(&a);

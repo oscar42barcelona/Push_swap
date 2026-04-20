@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:25:39 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/20 16:54:24 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:19:11 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ void	rr(t_stack **a, t_stack **b);
 void	rra(t_stack **a);
 void	rrb(t_stack **b);
 void    rrr(t_stack **a, t_stack **b);
+//indice de complejidad
+int	compute_disorder(t_stack **a);
 
 #endif
