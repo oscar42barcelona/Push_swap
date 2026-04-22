@@ -77,3 +77,53 @@ int *selection_sort(int *array, int n)
 	}
 }
 
+//aqui van algunas pruebas que hice al principio. 
+
+int selection_sort(t_stack **a, t_stack **b)
+{
+    t_stack min_index;
+    t_stack first;
+    t_stack j;
+
+    penultimo = (*a)->next->next;
+    first = *a;
+    i = 0;
+    while (first->next->next) //mientras sea menor que el size - 1
+    {
+        min_index = first;
+        j = first->next;
+        while (j->next)
+        {
+            if (j->value < min_index->value)
+                min_index = j;//menor valor encontrado
+            j = j->next;
+        }
+        while (min_index->value > first->value)
+            sa(a); //asi hago que no sea circular
+            pa(a); //muevo hacia arriba en busqueda de el numero anterior
+
+//tenemos que contar con el null.
+
+
+        first = first->next;
+    }
+}
+
+//pinga esto es una manera compartoimentada
+int find_smaller(t_stack *i)
+{
+    t_stack min_index;
+    t_stack first;
+    t_stack j;
+    int     i;
+
+    i = 0;
+    while (j->next)
+    {
+        if (j->value < min_index->value)
+            min_index = j;//menor valor encontrado
+        j = j->next;
+        i++;
+    }
+    return (i);
+}
