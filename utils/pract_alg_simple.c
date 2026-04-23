@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 17:13:18 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/23 14:50:07 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/23 15:38:36 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,10 @@ int main(void)
     n5->next = n6;
 
     a = n1;
+	
+	b = malloc(sizeof(t_stack));
+	b->next = NULL;
+
 
     print_list(a);
 	selection_sort(&a, &b);	

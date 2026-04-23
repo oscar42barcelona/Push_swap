@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 14:26:04 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/23 15:02:51 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/23 15:12:17 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	pb(t_stack **a, t_stack **b)
 {
 	t_stack	*first_a;
 
-	if (!b || !*b)
+	if (!a || !*a)
 		return (0); 
 	first_a = *a;
 	*a = (*a)->next;
