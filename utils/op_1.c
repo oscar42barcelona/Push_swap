@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 14:26:04 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/20 17:03:06 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/23 15:02:51 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,29 @@ void	ss(t_stack **a, t_stack **b)
 	sa(a);
 }
 
-void	pa(t_stack **a, t_stack **b)
+int	pa(t_stack **a, t_stack **b)
 {
 	t_stack	*first_b;
 
 	if (!b || !*b)
-		return; //o gestionarlo como error...
+		return (0);
 	first_b = *b;
 	*b = (*b)->next;
 	first_b->next = *a;
 	*a = first_b;
+	return (1);
 }
 
 
-void	pb(t_stack **a, t_stack **b)
+int	pb(t_stack **a, t_stack **b)
 {
 	t_stack	*first_a;
 
-	if (!a || !*a)
-		return; //o gestionarlo como error...
+	if (!b || !*b)
+		return (0); 
 	first_a = *a;
 	*a = (*a)->next;
 	first_a->next = *b;
 	*b = first_a;
+	return (1);
 }

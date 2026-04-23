@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alg_o_simple.c                                     :+:      :+:    :+:   */
+/*   pract_alg_simple.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 17:13:18 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/21 18:33:29 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/23 14:50:07 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,46 +19,31 @@ typedef struct s_stack
 }   t_stack;
 
 void	sa(t_stack **a);
-void    pa(t_stack **a, t_stack **b);
+int		pa(t_stack **a, t_stack **b);
 void	ra(t_stack **a);
-void    pb(t_stack **a, t_stack **b);
+int		pb(t_stack **a, t_stack **b);
 void    rrb(t_stack **b);
 
 void	selection_sort(t_stack **a, t_stack **b)
 {
 	t_stack *min_index;
-	t_stack *first;
 	t_stack *j;
-	int		i;
 
-	first = *a;
-	while (first->next->next) //mientras sea menor que el size - 1
+	while ((*a)->next->next) //mientras sea menor que el size - 1
 	{
-		min_index = first;
-		j = first->next;
-		i = 0;
+		min_index = *a;;
+		j = (*a)->next;
 		while (j)
 		{
 			if (j->value < min_index->value)
-				min_index = j;//menor valor encontrado
+				min_index = j; //menor valor encontrado
 			j = j->next;
-			i++;
 		}
-		i--;
-		while (i)
-		{
-			sa(a); //asi hago que no sea circular
+		while (*a != min_index)
 			ra(a); //muevo hacia arriba en busqueda de el numero anterior
-			i--;
-		}
-		ra(a);
 		pb(a, b);
 	}
-	while (*b)
-	{
-		rrb(b);
-		pa(a, b);
-	}
+	while (pa(a, b));
 }
 
 #include <stdio.h>
