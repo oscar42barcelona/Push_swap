@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 17:13:18 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/23 15:38:36 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/23 16:45:50 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	selection_sort(t_stack **a, t_stack **b)
 	t_stack *min_index;
 	t_stack *j;
 
-	while ((*a)->next->next) //mientras sea menor que el size - 1
+	while ((*a)->next) //mientras sea menor que el size - 1
 	{
 		min_index = *a;;
 		j = (*a)->next;
@@ -52,7 +52,7 @@ void	selection_sort(t_stack **a, t_stack **b)
 
 void    print_list(t_stack *a)
 {
-    int i = 0;
+    int i = 1;
 
     while (a)
     {
@@ -84,11 +84,11 @@ int main(void)
     t_stack *n6;
 
     n1 = new_node(42);
-    n2 = new_node(3);
-    n3 = new_node(17);
+    n2 = new_node(1);
+    n3 = new_node(79);
     n4 = new_node(8);
-    n5 = new_node(25);
-    n6 = new_node(1);
+    n5 = new_node(176);
+    n6 = new_node(6);
 
     n1->next = n2;
     n2->next = n3;
@@ -98,9 +98,7 @@ int main(void)
 
     a = n1;
 	
-	b = malloc(sizeof(t_stack));
-	b->next = NULL;
-
+	b = NULL;
 
     print_list(a);
 	selection_sort(&a, &b);	

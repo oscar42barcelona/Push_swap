@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:05:03 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/23 11:47:07 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/23 19:32:22 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,49 @@ void	process_tokens(char **tokens, t_stack **a)
 	}
 }
 
+void	printealo(t_stack **a)
+{
+	t_stack	*first;
+	int		i;
+
+	i = 1;
+	first = *a;
+	while (first)
+	{
+		printf ("El indice%d es: %d\n", i, first->value);
+		i++;
+		first = first->next;
+	}
+}
+
+void    printealo_2(t_stack **a)
+{
+	t_stack	*first;
+    int 	i;
+
+    i = 1;
+    first = *a;
+    while (first)
+    {
+        printf ("El nuevo orden es. Indice%d es: %d\n", i, first->value);
+        i++;
+        first = first->next;
+    }
+}
+
+
 #include <stdio.h>
 
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
+	t_stack	*b;
 	t_flags	flags;
 	char	**tokens;
 	int		i;
 
 	a = NULL;
+	b = NULL;
 	if (argc < 2)
 		return (0);
 	flags.bench = 0;
@@ -100,7 +133,10 @@ int	main(int argc, char **argv)
 		free_matrix(tokens);
 		i++;
 	}
-	printf ("el indice es: %d", compute_disorder(&a));
+	printealo(&a);
+	selection_sort(&a, &b);
+	printealo_2(&a);
+	//printf ("el indice es: %d", compute_disorder(&a));
 	// TODO: Ejecutar algoritmos de ordenación
 	//printf("[DEBUG] Bench: %d | Strategy: %d\n", flags.bench, flags.strategy); // BORRAR LUEGO
 	free_stack(&a);

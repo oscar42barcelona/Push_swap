@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 14:26:04 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/23 15:12:17 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/23 17:50:10 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	pa(t_stack **a, t_stack **b)
 	*a = first_b;
 	return (1);
 }
-
 
 int	pb(t_stack **a, t_stack **b)
 {

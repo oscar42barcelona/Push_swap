@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:25:39 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/23 14:49:30 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/23 19:13:53 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,14 @@ void	rrb(t_stack **b);
 void    rrr(t_stack **a, t_stack **b);
 //indice de complejidad
 int	compute_disorder(t_stack **a);
+
+//algoritmo simple
+
+int		lst_size(t_stack **a);
+int		dst_lst(t_stack **a, t_stack *min_index);
+void	pasos_a_b(t_stack **a, t_stack **b, t_stack *min_index);
+void	selection_sort(t_stack **a, t_stack **b);
+
+//algoritmo medio
 
 #endif
