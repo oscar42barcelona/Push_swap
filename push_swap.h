@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
+/*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:25:39 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/23 19:13:53 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/28 00:00:00 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,45 +34,71 @@ typedef enum e_algo
 
 typedef struct s_flags
 {
-	int		bench;// 0 = apagado, 1 = encendido
+	int		bench;
 	t_alg	strategy;
 }	t_flags;
 
-// Analisis Léxico y Validación
+typedef struct s_bench
+{
+	int		sa;
+	int		sb;
+	int		ss;
+	int		pa;
+	int		pb;
+	int		ra;
+	int		rb;
+	int		rr;
+	int		rra;
+	int		rrb;
+	int		rrr;
+	int		total;
+}	t_bench;
+
+// Análisis léxico y validación
 int		is_valid_format(char *str);
 int		ft_atol_safe(char *str, long *result);
+void	process_tokens(char **tokens, t_stack **a);
 
-// Analisis contextual y estructura
+// Estructura del stack
 int		check_duplicate(t_stack *stack, int value);
 int		add_to_stack(t_stack **stack, int value);
 void	free_stack(t_stack **stack);
+int		is_sorted(t_stack **a);
 
-// Utils
-//*******gestion de errores
+// Gestión de errores
 void	free_matrix(char **matrix);
 void	error_exit(t_stack **stack, char **matrix);
-//*******operaciones listas
-void	sa(t_stack **a);
-void	sb(t_stack **b);
-void	ss(t_stack **a, t_stack **b);
-int		pa(t_stack **a, t_stack **b);
-int		pb(t_stack **a, t_stack **b);
-void	ra(t_stack **a);
-void	rb(t_stack **b);
-void	rr(t_stack **a, t_stack **b);
-void	rra(t_stack **a);
-void	rrb(t_stack **b);
-void    rrr(t_stack **a, t_stack **b);
-//indice de complejidad
-int	compute_disorder(t_stack **a);
 
-//algoritmo simple
+// Operaciones — swap y push
+void	sa(t_stack **a, t_bench *ops);
+void	sb(t_stack **b, t_bench *ops);
+void	ss(t_stack **a, t_stack **b, t_bench *ops);
+int		pa(t_stack **a, t_stack **b, t_bench *ops);
+int		pb(t_stack **a, t_stack **b, t_bench *ops);
 
+// Operaciones — rotate
+void	ra(t_stack **a, t_bench *ops);
+void	rb(t_stack **b, t_bench *ops);
+void	rr(t_stack **a, t_stack **b, t_bench *ops);
+
+// Operaciones — reverse rotate
+void	rra(t_stack **a, t_bench *ops);
+void	rrb(t_stack **b, t_bench *ops);
+void	rrr(t_stack **a, t_stack **b, t_bench *ops);
+
+// Índice de desorden
+float	compute_disorder(t_stack **a);
+
+// Algoritmos
 int		lst_size(t_stack **a);
-int		dst_lst(t_stack **a, t_stack *min_index);
-void	pasos_a_b(t_stack **a, t_stack **b, t_stack *min_index);
-void	selection_sort(t_stack **a, t_stack **b);
+int		dst_lst(t_stack **a, t_stack *min_node);
+void	pasos_a_b(t_stack **a, t_stack **b, t_stack *min, t_bench *ops);
+void	selection_sort(t_stack **a, t_stack **b, t_bench *ops);
+void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops);
+void	radix_sort(t_stack **a, t_stack **b, t_bench *ops);
+void	adaptive_sort(t_stack **a, t_stack **b, t_bench *ops, float disorder);
 
-//algoritmo medio
-
+// Benchmark
+void	print_bench(t_bench *ops, t_alg strategy, float disorder);
+void	print_stack_stderr(t_stack *stack, char *name); // Temporal para debug
 #endif

@@ -1,12 +1,15 @@
 NAME = push_swap
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRC = main.c parser.c stack.c utils/op_1.c utils/op_2.c utils/op_3.c compute_disorder.c utils/alg_o_simple.c
+SRC = main.c errors.c parser.c stack.c compute_disorder.c \
+      utils/ops_swap.c utils/ops_push.c utils/ops_rotate.c \
+      utils/ops_rrotate.c utils/alg_simple.c utils/alg_medium.c \
+      utils/alg_complex.c utils/alg_adaptive.c utils/bench.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
@@ -30,4 +33,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus: all
+
+.PHONY: all clean fclean re bonus

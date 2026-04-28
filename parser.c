@@ -6,13 +6,12 @@
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 18:56:23 by jgarcia4          #+#    #+#             */
-/*   Updated: 2026/04/23 11:45:03 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/28 00:00:00 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// O_4: Validar el formato de cada token
 int	is_valid_format(char *str)
 {
 	int	i;
@@ -31,9 +30,6 @@ int	is_valid_format(char *str)
 	return (1);
 }
 
-// O_5 y O_6: Convierte string a long. 
-// Comprueba si el algun numero sobrepasa los limites de INT. 
-// Devuelve 0 si hay overflow, 1 si el número es válido (O_7).
 int	ft_atol_safe(char *str, long *result)
 {
 	int		sign;
@@ -57,4 +53,20 @@ int	ft_atol_safe(char *str, long *result)
 		return (0);
 	*result = res;
 	return (1);
+}
+
+void	process_tokens(char **tokens, t_stack **a)
+{
+	int		j;
+	long	number;
+
+	j = 0;
+	while (tokens[j])
+	{
+		if (!is_valid_format(tokens[j]) || !ft_atol_safe(tokens[j], &number))
+			error_exit(a, tokens);
+		if (check_duplicate(*a, (int)number) || !add_to_stack(a, (int)number))
+			error_exit(a, tokens);
+		j++;
+	}
 }

@@ -6,13 +6,12 @@
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 18:56:43 by jgarcia4          #+#    #+#             */
-/*   Updated: 2026/04/20 18:37:38 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/28 00:00:00 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Detectar duplicados
 int	check_duplicate(t_stack *stack, int value)
 {
 	while (stack)
@@ -24,7 +23,6 @@ int	check_duplicate(t_stack *stack, int value)
 	return (0);
 }
 
-// Crea un nodo de memoria y lo empuja a la base del stack A */
 int	add_to_stack(t_stack **stack, int value)
 {
 	t_stack	*new_node;
@@ -46,7 +44,6 @@ int	add_to_stack(t_stack **stack, int value)
 	return (1);
 }
 
-// Libera el Stack
 void	free_stack(t_stack **stack)
 {
 	t_stack	*tmp;
@@ -60,4 +57,18 @@ void	free_stack(t_stack **stack)
 		*stack = tmp;
 	}
 	*stack = NULL;
+}
+
+int	is_sorted(t_stack **a)
+{
+	t_stack	*cur;
+
+	cur = *a;
+	while (cur && cur->next)
+	{
+		if (cur->value > cur->next->value)
+			return (0);
+		cur = cur->next;
+	}
+	return (1);
 }

@@ -1,51 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_3.c                                             :+:      :+:    :+:   */
+/*   ops_rrotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 14:42:29 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/23 15:49:43 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/28 00:00:00 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	rra(t_stack **a)
+static void	rrotate_one(t_stack **s)
 {
 	t_stack	*penultimate;
-	t_stack	*ultimate;
+	t_stack	*last;
 
-	if (!a || !*a || !(*a)->next)
-		return;
-	penultimate = *a;
+	if (!*s || !(*s)->next)
+		return ;
+	penultimate = *s;
 	while (penultimate->next->next)
 		penultimate = penultimate->next;
-	ultimate = penultimate->next;
-	ultimate->next = *a;
-	*a = ultimate;
+	last = penultimate->next;
+	last->next = *s;
+	*s = last;
 	penultimate->next = NULL;
 }
 
-void	rrb(t_stack **b)
+void	rra(t_stack **a, t_bench *ops)
 {
-    t_stack *penultimate;
-    t_stack *ultimate;
-
-    if (!b || !*b || !(*b)->next)
-        return;
-    penultimate = *b;
-    while (penultimate->next->next)
-        penultimate = penultimate->next;
-    ultimate = penultimate->next;
-    ultimate->next = *b;
-    *b = ultimate;
-    penultimate->next = NULL;
+	rrotate_one(a);
+	ft_putstr_fd("rra\n", 1);
+	if (ops)
+	{
+		ops->rra++;
+		ops->total++;
+	}
 }
 
-void	rrr(t_stack **a, t_stack **b)
+void	rrb(t_stack **b, t_bench *ops)
 {
-	rra(a);
-	rrb(b);
+	rrotate_one(b);
+	ft_putstr_fd("rrb\n", 1);
+	if (ops)
+	{
+		ops->rrb++;
+		ops->total++;
+	}
+}
+
+void	rrr(t_stack **a, t_stack **b, t_bench *ops)
+{
+	rrotate_one(a);
+	rrotate_one(b);
+	ft_putstr_fd("rrr\n", 1);
+	if (ops)
+	{
+		ops->rrr++;
+		ops->total++;
+	}
 }

@@ -1,40 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compute_disorder.c                                 :+:      :+:    :+:   */
+/*   ops_swap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 17:51:07 by osuarez-          #+#    #+#             */
+/*   Created: 2026/04/17 14:26:04 by osuarez-          #+#    #+#             */
 /*   Updated: 2026/04/28 00:00:00 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-float	compute_disorder(t_stack **a)
+static void	swap_one(t_stack **s)
 {
-	int		mistakes;
-	int		total_pairs;
 	t_stack	*first;
 	t_stack	*second;
 
-	if (!*a || !(*a)->next)
-		return (0.0f);
-	mistakes = 0;
-	total_pairs = 0;
-	first = *a;
-	while (first->next)
+	if (!s || !*s || !(*s)->next)
+		return ;
+	first = *s;
+	second = (*s)->next;
+	first->next = second->next;
+	second->next = first;
+	*s = second;
+}
+
+void	sa(t_stack **a, t_bench *ops)
+{
+	swap_one(a);
+	ft_putstr_fd("sa\n", 1);
+	if (ops)
 	{
-		second = first->next;
-		while (second)
-		{
-			total_pairs++;
-			if (first->value > second->value)
-				mistakes++;
-			second = second->next;
-		}
-		first = first->next;
+		ops->sa++;
+		ops->total++;
 	}
-	return ((float)mistakes / total_pairs);
+}
+
+void	sb(t_stack **b, t_bench *ops)
+{
+	swap_one(b);
+	ft_putstr_fd("sb\n", 1);
+	if (ops)
+	{
+		ops->sb++;
+		ops->total++;
+	}
+}
+
+void	ss(t_stack **a, t_stack **b, t_bench *ops)
+{
+	swap_one(a);
+	swap_one(b);
+	ft_putstr_fd("ss\n", 1);
+	if (ops)
+	{
+		ops->ss++;
+		ops->total++;
+	}
 }

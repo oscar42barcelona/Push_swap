@@ -6,14 +6,12 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:05:03 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/23 19:32:22 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/28 00:00:00 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-// Liberar un array
 void	free_matrix(char **matrix)
 {
 	int	i;
@@ -27,15 +25,6 @@ void	free_matrix(char **matrix)
 		i++;
 	}
 	free(matrix);
-}
-
-// Impresion de error
-void	error_exit(t_stack **stack, char **matrix)
-{
-	ft_putstr_fd("Error\n", 2);
-	free_stack(stack);
-	free_matrix(matrix);
-	exit(1);
 }
 
 int	parse_flags(char *str, t_flags *flags)
@@ -55,90 +44,67 @@ int	parse_flags(char *str, t_flags *flags)
 	return (1);
 }
 
-void	process_tokens(char **tokens, t_stack **a)
+static void	parse_args(int argc, char **argv, t_stack **a, t_flags *flags)
 {
-	int		j;
-	long	number;
-
-	j = 0;
-	while (tokens[j])
-	{
-		if (!is_valid_format(tokens[j]) || !ft_atol_safe(tokens[j], &number))
-			error_exit(a, tokens);
-		if (check_duplicate(*a, (int)number) || !add_to_stack(a, (int)number))
-			error_exit(a, tokens);
-		j++;
-	}
-}
-
-void	printealo(t_stack **a)
-{
-	t_stack	*first;
-	int		i;
-
-	i = 1;
-	first = *a;
-	while (first)
-	{
-		printf ("El indice%d es: %d\n", i, first->value);
-		i++;
-		first = first->next;
-	}
-}
-
-void    printealo_2(t_stack **a)
-{
-	t_stack	*first;
-    int 	i;
-
-    i = 1;
-    first = *a;
-    while (first)
-    {
-        printf ("El nuevo orden es. Indice%d es: %d\n", i, first->value);
-        i++;
-        first = first->next;
-    }
-}
-
-
-#include <stdio.h>
-
-int	main(int argc, char **argv)
-{
-	t_stack	*a;
-	t_stack	*b;
-	t_flags	flags;
 	char	**tokens;
 	int		i;
 
-	a = NULL;
-	b = NULL;
-	if (argc < 2)
-		return (0);
-	flags.bench = 0;
-	flags.strategy = ALG_ADAPTIVE;
 	i = 1;
 	while (i < argc)
 	{
-		if (parse_flags(argv[i], &flags))
+		if (parse_flags(argv[i], flags))
 		{
 			i++;
 			continue ;
 		}
 		tokens = ft_split(argv[i], ' ');
 		if (!tokens || !tokens[0])
-			error_exit(&a, tokens);
-		process_tokens(tokens, &a);
+			error_exit(a, tokens);
+		process_tokens(tokens, a);
 		free_matrix(tokens);
 		i++;
 	}
-	printealo(&a);
-	selection_sort(&a, &b);
-	printealo_2(&a);
-	//printf ("el indice es: %d", compute_disorder(&a));
-	// TODO: Ejecutar algoritmos de ordenación
-	//printf("[DEBUG] Bench: %d | Strategy: %d\n", flags.bench, flags.strategy); // BORRAR LUEGO
+}
+
+static void	run_sort(t_stack **a, t_stack **b, t_flags *flags)
+{
+	t_bench	ops;
+	float	disorder;
+
+	ft_bzero(&ops, sizeof(t_bench));
+	if (is_sorted(a))
+		return ;
+	disorder = compute_disorder(a);
+	if (flags->bench) // Temporal testeo
+		print_stack_stderr(*a, "INICIAL");
+	if (flags->strategy == ALG_SIMPLE)
+		selection_sort(a, b, &ops);
+	else if (flags->strategy == ALG_MEDIUM)
+		chunk_sort(a, b, &ops);
+	else if (flags->strategy == ALG_COMPLEX)
+		radix_sort(a, b, &ops);
+	else
+		adaptive_sort(a, b, &ops, disorder);
+	if (flags->bench)
+	{
+		print_stack_stderr(*a, "FINAL"); // Temporal testeo
+		print_bench(&ops, flags->strategy, disorder);
+	}
+}
+int	main(int argc, char **argv)
+{
+	t_stack	*a;
+	t_stack	*b;
+	t_flags	flags;
+
+	a = NULL;
+	b = NULL;
+	flags.bench = 0;
+	flags.strategy = ALG_ADAPTIVE;
+	if (argc < 2)
+		return (0);
+	parse_args(argc, argv, &a, &flags);
+	run_sort(&a, &b, &flags);
 	free_stack(&a);
 	return (0);
 }

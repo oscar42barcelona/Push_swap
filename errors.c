@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compute_disorder.c                                 :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
+/*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 17:51:07 by osuarez-          #+#    #+#             */
+/*   Created: 2026/04/28 00:00:00 by jgarcia4          #+#    #+#             */
 /*   Updated: 2026/04/28 00:00:00 by jgarcia4         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-float	compute_disorder(t_stack **a)
+void	error_exit(t_stack **stack, char **matrix)
 {
-	int		mistakes;
-	int		total_pairs;
-	t_stack	*first;
-	t_stack	*second;
-
-	if (!*a || !(*a)->next)
-		return (0.0f);
-	mistakes = 0;
-	total_pairs = 0;
-	first = *a;
-	while (first->next)
-	{
-		second = first->next;
-		while (second)
-		{
-			total_pairs++;
-			if (first->value > second->value)
-				mistakes++;
-			second = second->next;
-		}
-		first = first->next;
-	}
-	return ((float)mistakes / total_pairs);
+	ft_putstr_fd("Error\n", 2);
+	free_stack(stack);
+	free_matrix(matrix);
+	exit(1);
 }
