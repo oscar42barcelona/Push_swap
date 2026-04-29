@@ -4,36 +4,15 @@
 /*   alg_medium.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                  a                              +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 00:00:00 by jgarcia4          #+#    #+#             */
-/*   Updated: 2026/04/29 09:02:39 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/29 18:07:27 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-/* TODO CP2: implementar chunk sort O(n*sqrt(n)) */
-void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops)
-{
-	selection_sort(a, b, ops);
-}
-
-static int size(stack **a)
-{
-	int		size;
-	t_stack	**node;
-
-	node = *a;
-	size = 0;
-	while (node)
-	{
-		size++;
-		node = node->next;
-	}
-	return (size);
-}
-
-static int rc(int size)
+int rc(int size)
 {
 	int	i;
 	
@@ -71,34 +50,38 @@ void    index_sort(t_stack **a, int size)
 }
 
 
-void  *chunks(t_stack **a, t_stack **b)
+void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops)
 {
 	int		size;
 	int		rango;
 	int		i;
+	int		chunk;
 	t_stack	*min_index;
-	t_stack	*nodo;
+	t_stack	*nodo_a;
 	
-	size = size(a);
+	size = lst_size(a);
 	index_sort(a,size);
-	rango = rc(size(a));
+	rango = rc(size);
+	chunk = rango;
 	i = 1;
 	while (i <= size)
 	{
 		min_index = *a;
-		nodo = *a;
-		while (nodo)
+		nodo_a = *a;
+		while (nodo_a)
 		{
-			if ((nodo->index > (chunk - chunk)) && (nodo->index <= chunk))
-				pasos_a_b(a, b, min_index);
-			nodo = nodo->next;
+			if ((nodo_a->index > (chunk - rango)) && (nodo_a->index <= chunk))
+			{
+				min_index = nodo_a;
+				break;
+			}
+			nodo_a = nodo_a->next;
 		}
-		if ( )
-		{
-			
-		}
-		chunk = chunk + chunk;
+		pasos_a_b(a, b, min_index, ops);
+		if (*b && (*b)->next && (*b)->index < (*b)->next->index)
+			sb(b, ops);
+		i++;
+		if (i == chunk)
+			chunk = chunk + rango;
 	}
-	
 }
-*/

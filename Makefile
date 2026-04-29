@@ -1,6 +1,6 @@
 NAME = push_swap
 
-CC = cc
+CC = cc -g
 CFLAGS = -Wall -Wextra -Werror
 
 LIBFT_DIR = libft
@@ -9,7 +9,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRC = main.c errors.c parser.c stack.c compute_disorder.c \
       utils/ops_swap.c utils/ops_push.c utils/ops_rotate.c \
       utils/ops_rrotate.c utils/alg_simple.c utils/alg_medium.c \
-      utils/alg_complex.c utils/alg_adaptive.c utils/bench.c
+      utils/alg_complex.c utils/alg_adaptive.c utils/bench.c 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
