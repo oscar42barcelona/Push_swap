@@ -6,7 +6,7 @@
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 00:00:00 by jgarcia4          #+#    #+#             */
-/*   Updated: 2026/04/28 00:00:00 by jgarcia4         ###   ########.fr       */
+/*   Updated: 2026/04/29 09:02:39 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops)
 	selection_sort(a, b, ops);
 }
 
-/*
 static int size(stack **a)
 {
 	int		size;
