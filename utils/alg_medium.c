@@ -6,17 +6,18 @@
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 00:00:00 by jgarcia4          #+#    #+#             */
-/*   Updated: 2026/04/29 09:02:39 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/29 14:34:39 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-/* TODO CP2: implementar chunk sort O(n*sqrt(n)) */
+/* TODO CP2: implementar chunk sort O(n*sqrt(n)) 
 void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops)
 {
 	selection_sort(a, b, ops);
 }
+*/
 
 static int size(stack **a)
 {
@@ -76,29 +77,33 @@ void  *chunks(t_stack **a, t_stack **b)
 	int		size;
 	int		rango;
 	int		i;
+	int		chunk;
 	t_stack	*min_index;
-	t_stack	*nodo;
+	t_stack	*nodo_a;
+	t_stack	*nodo_b;
+	t_stack	*second_b;
 	
 	size = size(a);
 	index_sort(a,size);
 	rango = rc(size(a));
+	chunk = rango;
 	i = 1;
 	while (i <= size)
 	{
 		min_index = *a;
-		nodo = *a;
+		nodo_a = *a;
+        nodo_b = *b;
 		while (nodo)
 		{
-			if ((nodo->index > (chunk - chunk)) && (nodo->index <= chunk))
+			if ((nodo->index > (chunk - rango)) && (nodo->index <= chunk))
+			{
+				min_index = nodo;
 				pasos_a_b(a, b, min_index);
+				if (nodo && nodo_b->index < nodo_b->next->index)
+					sb(b);
+			}
 			nodo = nodo->next;
 		}
-		if ( )
-		{
-			
-		}
-		chunk = chunk + chunk;
+		chunk = chunk + rango;
 	}
-	
 }
-*/
