@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 17:13:18 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/28 00:00:00 by jgarcia4         ###   ########.fr       */
+/*   Updated: 2026/04/29 15:03:51 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,5 @@ void	selection_sort(t_stack **a, t_stack **b, t_bench *ops)
 		}
 		pasos_a_b(a, b, min, ops);
 	}
-	while (pa(a, b, ops))
-		;
+	while (pa(a, b, ops));
 }

@@ -6,7 +6,7 @@
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:25:39 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/29 09:04:34 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/29 17:04:53 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef struct s_stack
 {
 	int				value;
+	int				index;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -90,13 +91,16 @@ void	rrr(t_stack **a, t_stack **b, t_bench *ops);
 float	compute_disorder(t_stack **a);
 
 // Algoritmos
-int		lst_size(t_stack **a);
-int		dst_lst(t_stack **a, t_stack *min_node);
-void	pasos_a_b(t_stack **a, t_stack **b, t_stack *min, t_bench *ops);
-void	selection_sort(t_stack **a, t_stack **b, t_bench *ops);
-void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops);
-void	radix_sort(t_stack **a, t_stack **b, t_bench *ops);
-void	adaptive_sort(t_stack **a, t_stack **b, t_bench *ops, float disorder);
+int			lst_size(t_stack **a);
+int			dst_lst(t_stack **a, t_stack *min_node);
+int			rc(int size);
+void		index_sort(t_stack **a, int size);
+void		pasos_a_b(t_stack **a, t_stack **b, t_stack *min, t_bench *ops);
+void		selection_sort(t_stack **a, t_stack **b, t_bench *ops);
+void		index_sort(t_stack **a, int size);
+void		chunk_sort(t_stack **a, t_stack **b, t_bench *ops);
+void		radix_sort(t_stack **a, t_stack **b, t_bench *ops);
+void		adaptive_sort(t_stack **a, t_stack **b, t_bench *ops, float disorder);
 
 // Benchmark
 void	print_bench(t_bench *ops, t_alg strategy, float disorder);
