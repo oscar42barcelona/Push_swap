@@ -6,7 +6,7 @@
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                  a                              +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 00:00:00 by jgarcia4          #+#    #+#             */
-/*   Updated: 2026/04/30 13:26:01 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/30 13:28:10 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,10 @@ void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops)
 	i = 1;
 	while (i <= size)
 	{
-		min_index = *a;
 		nodo_a = *a;
 		while (nodo_a)
 		{
 			if ((nodo_a->index > (chunk - rango)) && (nodo_a->index <= chunk))
-				min_index = nodo_a;
 				break;
 			nodo_a = nodo_a->next;
 		}
