@@ -6,7 +6,7 @@
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                  a                              +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 00:00:00 by jgarcia4          #+#    #+#             */
-/*   Updated: 2026/04/29 18:07:27 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/04/30 19:23:50 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,38 +50,66 @@ void    index_sort(t_stack **a, int size)
 }
 
 
+void	send_back(t_stack **a, t_stack **b, int size, t_bench *ops)
+{
+	int		pos;
+	int		len;
+	t_stack	*nodo;
+
+	while (size)
+	{
+		pos = 0;
+		nodo = *b;
+		while (nodo && nodo->index != size && ++pos)
+			nodo = nodo->next;
+		if (!nodo)
+			return ;
+		len = lst_size(b);
+		if (pos <= len / 2)
+			while ((*b)->index != size)
+				rb(b, ops);
+		else
+			while ((*b)->index != size)
+				rrb(b, ops);
+		pa(a, b, ops);
+		size--;
+	}
+}
+
+t_stack	*find_in_chunk(t_stack *a, int min, int max)
+{
+	while (a)
+	{
+		if (a->index > min && a->index <= max)
+			return (a);
+		a = a->next;
+	}
+	return (NULL);
+}
+
 void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops)
 {
 	int		size;
 	int		rango;
 	int		i;
 	int		chunk;
-	t_stack	*min_index;
 	t_stack	*nodo_a;
-	
+
 	size = lst_size(a);
-	index_sort(a,size);
+	index_sort(a, size);
 	rango = rc(size);
 	chunk = rango;
 	i = 1;
 	while (i <= size)
 	{
-		min_index = *a;
-		nodo_a = *a;
-		while (nodo_a)
+		nodo_a = find_in_chunk(*a, chunk - rango, chunk);
+		if (!nodo_a)
+			chunk += rango;
+		else
 		{
-			if ((nodo_a->index > (chunk - rango)) && (nodo_a->index <= chunk))
-			{
-				min_index = nodo_a;
-				break;
-			}
-			nodo_a = nodo_a->next;
+			pasos_a_b(a, b, nodo_a, ops);
+			i++;
 		}
-		pasos_a_b(a, b, min_index, ops);
-		if (*b && (*b)->next && (*b)->index < (*b)->next->index)
-			sb(b, ops);
-		i++;
-		if (i == chunk)
-			chunk = chunk + rango;
 	}
+	send_back(a, b, size, ops);
 }
