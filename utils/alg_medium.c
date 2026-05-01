@@ -6,7 +6,7 @@
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                  a                              +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 00:00:00 by jgarcia4          #+#    #+#             */
-/*   Updated: 2026/04/30 19:35:22 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/05/01 15:24:49 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void    index_sort(t_stack **a, int size)
 	int		i;
 	int		value;
 
-	i = 1;
+	i = 0;
 	while (i <= size)
 	{
 		nodo = *a;
@@ -99,8 +99,8 @@ void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops)
 	index_sort(a, size);
 	rango = rc(size);
 	chunk = rango;
-	i = 1;
-	while (i <= size)
+	i = 0;
+	while (i < size)
 	{
 		nodo_a = find_in_chunk(*a, chunk - rango, chunk);
 		if (!nodo_a)
