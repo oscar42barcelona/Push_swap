@@ -4,7 +4,7 @@
 /*   alg_medium.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
-/*                  a                              +#+#+#+#+#+   +#+           */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 00:00:00 by jgarcia4          #+#    #+#             */
 /*   Updated: 2026/05/01 15:24:49 by osuarez-         ###   ########.fr       */
 /*                                                                            */
@@ -12,43 +12,43 @@
 
 #include "../push_swap.h"
 
-int rc(int size)
+int	isqrt(int size)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i * i < size)
 		i++;
 	return (i);
 }
 
-void    index_sort(t_stack **a, int size)
+void	index_sort(t_stack **a, int size)
 {
-	t_stack	*nodo;
+	t_stack	*node;
 	t_stack	*min;
 	int		i;
 	int		value;
 
-	i = 0;
+	i = 1;
 	while (i <= size)
 	{
-		nodo = *a;
+		node = *a;
 		min = NULL;
-		while (nodo)
+		value = INT_MAX;
+		while (node)
 		{
-			if (nodo->index == 0 && (min == NULL || nodo->value < value))
+			if (node->index == 0 && node->value < value)
 			{
-				value = nodo->value;
-				min = nodo;
+				value = node->value;
+				min = node;
 			}
-			nodo = nodo->next;
+			node = node->next;
 		}
 		if (min)
 			min->index = i;
 		i++;
 	}
 }
-
 
 void	send_back(t_stack **a, t_stack **b, int size, t_bench *ops)
 {
@@ -90,24 +90,24 @@ t_stack	*find_in_chunk(t_stack *a, int min, int max)
 void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops)
 {
 	int		size;
-	int		rango;
+	int		chunk_size;
 	int		i;
 	int		chunk;
-	t_stack	*nodo_a;
+	t_stack	*node;
 
 	size = lst_size(a);
 	index_sort(a, size);
-	rango = rc(size);
-	chunk = rango;
+	chunk_size = isqrt(size);
+	chunk = chunk_size;
 	i = 0;
 	while (i < size)
 	{
-		nodo_a = find_in_chunk(*a, chunk - rango, chunk);
-		if (!nodo_a)
-			chunk += rango;
+		node = find_in_chunk(*a, chunk - chunk_size, chunk);
+		if (!node)
+			chunk += chunk_size;
 		else
 		{
-			pasos_a_b(a, b, nodo_a, ops);
+			push_min_to_b(a, b, node, ops);
 			i++;
 		}
 	}

@@ -12,9 +12,24 @@
 
 #include "../push_swap.h"
 
-/* TODO CP3: implementar selector adaptativo por índice de desorden */
+t_alg	adaptive_strategy(float disorder)
+{
+	if (disorder < 0.2f)
+		return (ALG_SIMPLE);
+	if (disorder < 0.5f)
+		return (ALG_MEDIUM);
+	return (ALG_COMPLEX);
+}
+
 void	adaptive_sort(t_stack **a, t_stack **b, t_bench *ops, float disorder)
 {
-	(void)disorder;
-	selection_sort(a, b, ops);
+	t_alg	algo;
+
+	algo = adaptive_strategy(disorder);
+	if (algo == ALG_SIMPLE)
+		selection_sort(a, b, ops);
+	else if (algo == ALG_MEDIUM)
+		chunk_sort(a, b, ops);
+	else
+		radix_sort(a, b, ops);
 }

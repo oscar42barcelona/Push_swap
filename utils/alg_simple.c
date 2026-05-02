@@ -44,11 +44,11 @@ int	dst_lst(t_stack **a, t_stack *min_node)
 	return (-1);
 }
 
-static void	rotate_to_top(t_stack **a, int dst, int tam, t_bench *ops)
+static void	rotate_to_top(t_stack **a, int dst, int size, t_bench *ops)
 {
-	if (dst > tam - dst)
+	if (dst > size - dst)
 	{
-		dst = tam - dst;
+		dst = size - dst;
 		while (dst--)
 			rra(a, ops);
 	}
@@ -59,16 +59,16 @@ static void	rotate_to_top(t_stack **a, int dst, int tam, t_bench *ops)
 	}
 }
 
-void	pasos_a_b(t_stack **a, t_stack **b, t_stack *min, t_bench *ops)
+void	push_min_to_b(t_stack **a, t_stack **b, t_stack *min, t_bench *ops)
 {
 	int	dst;
-	int	tam;
+	int	size;
 
 	dst = dst_lst(a, min);
 	if (dst == -1)
 		return ;
-	tam = lst_size(a);
-	rotate_to_top(a, dst, tam, ops);
+	size = lst_size(a);
+	rotate_to_top(a, dst, size, ops);
 	pb(a, b, ops);
 }
 
@@ -87,7 +87,8 @@ void	selection_sort(t_stack **a, t_stack **b, t_bench *ops)
 				min = cur;
 			cur = cur->next;
 		}
-		pasos_a_b(a, b, min, ops);
+		push_min_to_b(a, b, min, ops);
 	}
-	while (pa(a, b, ops));
+	while (pa(a, b, ops))
+		;
 }

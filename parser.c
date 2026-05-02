@@ -12,6 +12,21 @@
 
 #include "push_swap.h"
 
+void	free_matrix(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	if (!matrix)
+		return ;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+}
+
 int	is_valid_format(char *str)
 {
 	int	i;

@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-static int	calcular_bits(int size)
+static int	count_bits(int size)
 {
 	int	bits;
 
@@ -24,27 +24,28 @@ static int	calcular_bits(int size)
 
 void	radix_sort(t_stack **a, t_stack **b, t_bench *ops)
 {
-	int	vueltas;
-	int	i;
+	int	bits;
+	int	bit;
 	int	size;
-	int	rep;
+	int	i;
 
 	size = lst_size(a);
 	index_sort(a, size);
-	vueltas = calcular_bits(size);
-	i = 0;
-	while (i < vueltas)
+	bits = count_bits(size);
+	bit = 0;
+	while (bit < bits)
 	{
-		rep = size;
-		while (rep)
+		i = size;
+		while (i)
 		{
-			if (((*a)->index >> i) & 1)
+			if (((*a)->index >> bit) & 1)
 				ra(a, ops);
 			else
 				pb(a, b, ops);
-			rep--;
+			i--;
 		}
-		while (pa(a, b, ops));
-		i++;
+		while (pa(a, b, ops))
+			;
+		bit++;
 	}
 }

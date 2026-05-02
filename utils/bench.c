@@ -12,15 +12,21 @@
 
 #include "../push_swap.h"
 
-static char	*bench_strategy_name(t_alg strategy)
+static char	*bench_strategy_name(t_alg mode, t_alg effective)
 {
-	if (strategy == ALG_SIMPLE)
+	if (mode == ALG_ADAPTIVE)
+	{
+		if (effective == ALG_SIMPLE)
+			return ("Adaptive / O(n^2)");
+		if (effective == ALG_MEDIUM)
+			return ("Adaptive / O(n*sqrt(n))");
+		return ("Adaptive / O(n*log(n))");
+	}
+	if (mode == ALG_SIMPLE)
 		return ("Simple / O(n^2)");
-	if (strategy == ALG_MEDIUM)
+	if (mode == ALG_MEDIUM)
 		return ("Medium / O(n*sqrt(n))");
-	if (strategy == ALG_COMPLEX)
-		return ("Complex / O(n*log(n))");
-	return ("Adaptive");
+	return ("Complex / O(n*log(n))");
 }
 
 static void	print_percent(float f, int fd)
@@ -37,12 +43,12 @@ static void	print_percent(float f, int fd)
 	ft_putnbr_fd(dec_part, fd);
 }
 
-static void	print_bench_header(t_bench *ops, float disorder, t_alg strategy)
+static void	print_bench_header(t_bench *ops, float dis, t_alg mode, t_alg eff)
 {
 	ft_putstr_fd("[bench] disorder: ", 2);
-	print_percent(disorder, 2);
+	print_percent(dis, 2);
 	ft_putstr_fd("%\n[bench] strategy: ", 2);
-	ft_putstr_fd(bench_strategy_name(strategy), 2);
+	ft_putstr_fd(bench_strategy_name(mode, eff), 2);
 	ft_putstr_fd("\n[bench] total_ops: ", 2);
 	ft_putnbr_fd(ops->total, 2);
 	ft_putchar_fd('\n', 2);
@@ -75,24 +81,8 @@ static void	print_bench_ops(t_bench *ops)
 	ft_putchar_fd('\n', 2);
 }
 
-void	print_bench(t_bench *ops, t_alg strategy, float disorder)
+void	print_bench(t_bench *ops, t_alg mode, t_alg effective, float disorder)
 {
-	print_bench_header(ops, disorder, strategy);
+	print_bench_header(ops, disorder, mode, effective);
 	print_bench_ops(ops);
-}
-
-// Funcion temporal de testeo
-void	print_stack_stderr(t_stack *stack, char *name)
-{
-	ft_putstr_fd("\n--- ESTADO ", 2);
-	ft_putstr_fd(name, 2);
-	ft_putstr_fd(" ---\nStack: ", 2);
-	while (stack)
-	{
-		ft_putchar_fd('[', 2);
-		ft_putnbr_fd(stack->value, 2);
-		ft_putstr_fd("] ", 2);
-		stack = stack->next;
-	}
-	ft_putstr_fd("\n\n", 2);
 }

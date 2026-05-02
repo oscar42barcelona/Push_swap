@@ -92,22 +92,21 @@ float	compute_disorder(t_stack **a);
 
 // Algoritmos
 //------------simple--------------------------------
-int			lst_size(t_stack **a);
-int			dst_lst(t_stack **a, t_stack *min_node);
-void		selection_sort(t_stack **a, t_stack **b, t_bench *ops);
-void		pasos_a_b(t_stack **a, t_stack **b, t_stack *min, t_bench *ops);
+int		lst_size(t_stack **a);
+int		dst_lst(t_stack **a, t_stack *min_node);
+void	selection_sort(t_stack **a, t_stack **b, t_bench *ops);
+void	push_min_to_b(t_stack **a, t_stack **b, t_stack *min, t_bench *ops);
 //------------medio--------------------------------
-int			rc(int size);
-void		index_sort(t_stack **a, int size);
-void		send_back(t_stack **a, t_stack **b, int size, t_bench *ops);
-void		chunk_sort(t_stack **a, t_stack **b, t_bench *ops);
-t_stack		*find_in_chunk(t_stack *a, int min, int max);
+int		isqrt(int size);
+void	index_sort(t_stack **a, int size);
+void	send_back(t_stack **a, t_stack **b, int size, t_bench *ops);
+void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops);
+t_stack	*find_in_chunk(t_stack *a, int min, int max);
 //------------alto---------------------------------
-void		send_back(t_stack **a, t_stack **b, int size, t_bench *ops);
-void		radix_sort(t_stack **a, t_stack **b, t_bench *ops);
-void		adaptive_sort(t_stack **a, t_stack **b, t_bench *ops, float disorder);
+void	radix_sort(t_stack **a, t_stack **b, t_bench *ops);
+t_alg	adaptive_strategy(float disorder);
+void	adaptive_sort(t_stack **a, t_stack **b, t_bench *ops, float disorder);
 
 // Benchmark
-void	print_bench(t_bench *ops, t_alg strategy, float disorder);
-void	print_stack_stderr(t_stack *stack, char *name); // Temporal para debug
+void	print_bench(t_bench *ops, t_alg mode, t_alg effective, float disorder);
 #endif
