@@ -6,7 +6,7 @@
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 18:56:23 by jgarcia4          #+#    #+#             */
-/*   Updated: 2026/04/29 18:15:39 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/05/04 16:36:16 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,11 @@ void	process_tokens(char **tokens, t_stack **a)
 			error_exit(a, tokens);
 		j++;
 	}
+}
+
+void	init_flags(t_flags *flags)
+{
+	flags->bench = 0;
+	flags->strategy_set = 0;
+	flags->strategy = ALG_ADAPTIVE;
 }

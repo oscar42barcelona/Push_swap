@@ -6,7 +6,7 @@
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:25:39 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/05/04 14:55:28 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/05/04 16:37:48 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef enum e_algo
 typedef struct s_flags
 {
 	int		bench;
+	int		strategy_set;
 	t_alg	strategy;
 }	t_flags;
 
@@ -59,6 +60,7 @@ typedef struct s_bench
 int		is_valid_format(char *str);
 int		ft_atol_safe(char *str, long *result);
 void	process_tokens(char **tokens, t_stack **a);
+void	init_flags(t_flags *flags);
 
 // Estructura del stack
 int		check_duplicate(t_stack *stack, int value);
