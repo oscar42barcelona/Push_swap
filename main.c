@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:05:03 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/05/01 16:18:56 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/05/04 16:45:45 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 static int	set_strategy(t_flags *flags, t_alg strat)
 {
-	if (flags->strategy != ALG_ADAPTIVE)
+	if (flags->strategy_set)
 		return (-1);
 	flags->strategy = strat;
+	flags->strategy_set = 1;
 	return (1);
 }
 
@@ -36,7 +37,7 @@ int	parse_flags(char *str, t_flags *flags)
 	if (ft_strncmp(str, "--complex", 10) == 0)
 		return (set_strategy(flags, ALG_COMPLEX));
 	if (ft_strncmp(str, "--adaptive", 11) == 0)
-		return (1);
+		return (set_strategy(flags, ALG_ADAPTIVE));
 	return (0);
 }
 
@@ -99,8 +100,7 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	flags.bench = 0;
-	flags.strategy = ALG_ADAPTIVE;
+	init_flags(&flags);
 	if (argc < 2)
 		return (0);
 	parse_args(argc, argv, &a, &flags);

@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 17:13:18 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/04/30 13:33:47 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/05/04 17:13:36 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,14 @@ void	selection_sort(t_stack **a, t_stack **b, t_bench *ops)
 {
 	t_stack	*min;
 	t_stack	*cur;
+	int		size;
 
+	size = lst_size(a);
+	if (size <= 5)
+	{
+		sort_small(a, b, ops);
+		return ;
+	}
 	while (*a && (*a)->next)
 	{
 		min = *a;
