@@ -6,7 +6,7 @@
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 00:00:00 by jgarcia4          #+#    #+#             */
-/*   Updated: 2026/05/04 14:55:37 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/05/04 17:12:43 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	radix_pass(t_stack **a, t_stack **b, int bit, t_bench *ops)
 			pb(a, b, ops);
 		rep--;
 	}
-	while (pa(a, b, ops));
+	while (pa(a, b, ops))
+		;
 }
 
 void	radix_sort(t_stack **a, t_stack **b, t_bench *ops)
@@ -50,7 +51,7 @@ void	radix_sort(t_stack **a, t_stack **b, t_bench *ops)
 	if (size <= 5)
 	{
 		sort_small(a, b, ops);
-		return;
+		return ;
 	}
 	index_sort(a, size);
 	max_bits = count_bits(size);

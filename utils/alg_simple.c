@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 17:13:18 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/05/04 15:14:47 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/05/04 17:13:36 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	selection_sort(t_stack **a, t_stack **b, t_bench *ops)
 	if (size <= 5)
 	{
 		sort_small(a, b, ops);
-		return;
+		return ;
 	}
 	while (*a && (*a)->next)
 	{
@@ -96,5 +96,6 @@ void	selection_sort(t_stack **a, t_stack **b, t_bench *ops)
 		}
 		push_min_to_b(a, b, min, ops);
 	}
-	while (pa(a, b, ops));
+	while (pa(a, b, ops))
+		;
 }

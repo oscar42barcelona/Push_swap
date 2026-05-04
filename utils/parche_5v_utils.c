@@ -6,7 +6,7 @@
 /*   By: osuarez- <osuarez-@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 14:19:09 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/05/04 15:16:07 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/05/04 17:14:23 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	move_min_to_top(t_stack **a, t_bench *ops)
 		rotate_min_backward(a, min_pos, size, ops);
 }
 
-int isqrt(int size)
+int	isqrt(int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i * i < size)
