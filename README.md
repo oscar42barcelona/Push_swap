@@ -82,6 +82,14 @@ Tras `⌈log₂(n)⌉` pasadas, A queda ordenado por índice, que equivale al or
 
 **Coste típico para n=500:** ≈ 6 800 operaciones.
 
+#### Optimización para tamaños pequeños
+
+Para entradas de tamaño `5` o menor, todas las estrategias utilizan una rutina determinista optimizada para casos pequeños. Esto significa que, aunque el usuario seleccione explícitamente `--simple`, `--medium`, `--complex` o `--adaptive`, el programa comprueba primero si el stack contiene cinco elementos o menos y, en ese caso, aplica el ordenador específico para tamaños pequeños.
+
+Esta decisión se considera un **caso base común**, no un cambio de estrategia. La flag seleccionada sigue definiendo la familia algorítmica principal usada por el programa para entradas mayores, pero aplicar `radix_sort`, ordenación por `chunks` u otra estrategia general a `2`, `3`, `4` o `5` elementos produciría operaciones innecesarias y una salida menos optimizada.
+
+Esta lógica es habitual en implementaciones de algoritmos de ordenación: las entradas muy pequeñas se resuelven mejor mediante reglas directas y deterministas, mientras que el algoritmo general se reserva para los casos en los que sus ventajas de complejidad empiezan a ser relevantes. Para `n > 5`, la estrategia seleccionada se respeta estrictamente.
+
 ---
 
 ### 🚩 Flags opcionales (extensiones del proyecto)
@@ -230,8 +238,8 @@ Si aparece cualquier `KO`, hay un bug en los algoritmos.
 
 | Alumno | Aportaciones |
 | :--- | :--- |
-| **osuarez-** | Selection sort (`alg_simple.c`): diseño e implementación completa del algoritmo O(n²). Chunk sort (`alg_medium.c`): implementación principal del algoritmo por bloques O(n√n), incluyendo normalización de índices, división en chunks y reconstrucción óptima. |
-| **jgarcia4** | Estructura del proyecto, parser de argumentos y flags, manejo de errores, índice de desorden (`compute_disorder`), radix sort (`alg_complex.c`), modo adaptativo (`alg_adaptive.c`), estadísticas de benchmark (`bench.c`), checker bonus, Makefile y cabeceras. |
+| **osuarez-** | Selection sort (`alg_simple.c`): diseño e implementación completa del algoritmo O(n²). Chunk sort (`alg_medium.c`): implementación principal del algoritmo por bloques O(n√n), incluyendo normalización de índices, división en chunks y reconstrucción óptima. Radix sort (`alg_complex.c`): implementación del algoritmo complejo O(n log n). Desarrollo inicial del índice de desorden (`compute_disorder`) y testeo general del programa para detectar errores de parseo, ejecución, benchmark y rendimiento. |
+| **jgarcia4** | Estructura general del proyecto, parser de argumentos y flags, manejo de errores, optimización del índice de desorden (`compute_disorder`), modo adaptativo (`alg_adaptive.c`), estadísticas de benchmark (`bench.c`), checker bonus, Makefile y cabeceras. |
 
 ---
 
