@@ -10,7 +10,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRC = main.c errors.c parser.c stack.c compute_disorder.c \
       utils/ops_swap.c utils/ops_push.c utils/ops_rotate.c \
       utils/ops_rrotate.c utils/alg_simple.c utils/alg_medium.c \
-      utils/alg_complex.c utils/alg_adaptive.c utils/bench.c
+      utils/alg_complex.c utils/alg_adaptive.c utils/bench.c \
+	  utils/parche_5v.c utils/parche_5v_utils.c 
 OBJ = $(SRC:.c=.o)
 
 BONUS_OBJS = bonus/checker_bonus.o bonus/checker_ops_bonus.o

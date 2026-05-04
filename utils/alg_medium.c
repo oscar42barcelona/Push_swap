@@ -6,21 +6,11 @@
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 00:00:00 by jgarcia4          #+#    #+#             */
-/*   Updated: 2026/05/01 15:24:49 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/05/04 15:12:15 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-int	isqrt(int size)
-{
-	int	i;
-
-	i = 0;
-	while (i * i < size)
-		i++;
-	return (i);
-}
 
 void	index_sort(t_stack **a, int size)
 {
@@ -87,16 +77,13 @@ t_stack	*find_in_chunk(t_stack *a, int min, int max)
 	return (NULL);
 }
 
-void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops)
+static void	push_chunks_to_b(t_stack **a, t_stack **b, int size, t_bench *ops)
 {
-	int		size;
-	int		chunk_size;
 	int		i;
 	int		chunk;
+	int		chunk_size;
 	t_stack	*node;
 
-	size = lst_size(a);
-	index_sort(a, size);
 	chunk_size = isqrt(size);
 	chunk = chunk_size;
 	i = 0;
@@ -111,5 +98,19 @@ void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops)
 			i++;
 		}
 	}
+}
+
+void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops)
+{
+	int	size;
+
+	size = lst_size(a);
+	if (size <= 5)
+	{
+		sort_small(a, b, ops);
+		return;
+	}
+	index_sort(a, size);
+	push_chunks_to_b(a, b, size, ops);
 	send_back(a, b, size, ops);
 }

@@ -6,7 +6,7 @@
 /*   By: jgarcia4 <jgarcia4@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:25:39 by osuarez-          #+#    #+#             */
-/*   Updated: 2026/05/01 16:19:31 by osuarez-         ###   ########.fr       */
+/*   Updated: 2026/05/04 14:55:28 by osuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,30 @@ void	rrr(t_stack **a, t_stack **b, t_bench *ops);
 float	compute_disorder(t_stack **a);
 
 // Algoritmos
-//------------simple--------------------------------
+//------------menos de 5#s-----------------------
+int		get_min_position(t_stack *a);
+void	rotate_min_forward(t_stack **a, int min_pos, t_bench *ops);
+void	rotate_min_backward(t_stack **a, int min_pos, int size, t_bench *ops);
+void	move_min_to_top(t_stack **a, t_bench *ops);
+void	sort_two(t_stack **a, t_bench *ops);
+void	sort_three(t_stack **a, t_bench *ops);
+void	sort_four(t_stack **a, t_stack **b, t_bench *ops);
+void	sort_five(t_stack **a, t_stack **b, t_bench *ops);
+void	sort_small(t_stack **a, t_stack **b, t_bench *ops);
+//------------simple-------------------------------
 int		lst_size(t_stack **a);
 int		dst_lst(t_stack **a, t_stack *min_node);
 void	selection_sort(t_stack **a, t_stack **b, t_bench *ops);
 void	push_min_to_b(t_stack **a, t_stack **b, t_stack *min, t_bench *ops);
-//------------medio--------------------------------
+//-------------medio-------------------------------
 int		isqrt(int size);
 void	index_sort(t_stack **a, int size);
 void	send_back(t_stack **a, t_stack **b, int size, t_bench *ops);
 void	chunk_sort(t_stack **a, t_stack **b, t_bench *ops);
 t_stack	*find_in_chunk(t_stack *a, int min, int max);
-//------------alto---------------------------------
+//--------------alto--------------------------------
+void	radix_pass(t_stack **a, t_stack **b, int bit, t_bench *ops);
+int		count_bits(int size);
 void	radix_sort(t_stack **a, t_stack **b, t_bench *ops);
 t_alg	adaptive_strategy(float disorder);
 void	adaptive_sort(t_stack **a, t_stack **b, t_bench *ops, float disorder);
