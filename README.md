@@ -249,8 +249,7 @@ Si aparece cualquier `KO`, hay un bug en los algoritmos.
 
 - **Radix Sort (Wikipedia):** Descripción completa del algoritmo LSD radix sort, que sirvió de base para la implementación sobre pilas.
 - **Counting Inversions (GeeksforGeeks):** Explicación del cálculo del número de inversiones en un array, aplicado aquí como índice de desorden.
-- **42 Push_Swap — The simplest algorithm:** Artículo de la comunidad 42 que describe el algoritmo de chunks (turk sort) y sus variantes para distintos tamaños de entrada.
-- `man 3 qsort`: Referencia de la ordenación estándar de C, utilizada como punto de comparación conceptual.
+
 
 ### Uso de Inteligencia Artificial
 
