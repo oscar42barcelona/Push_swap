@@ -14,16 +14,22 @@
 
 static char	*read_line(void)
 {
-	char	buf[12];
+	char	buf[5];
 	char	c;
 	int		i;
 	int		ret;
 
 	i = 0;
-	ft_bzero(buf, 12);
+	ft_bzero(buf, 5);
 	ret = read(0, &c, 1);
-	while (i < 11 && ret > 0 && c != '\n')
+	while (ret > 0 && c != '\n')
 	{
+		if (i >= 4)
+		{
+			while (ret > 0 && c != '\n')
+				ret = read(0, &c, 1);
+			return (ft_strdup("?"));
+		}
 		buf[i++] = c;
 		ret = read(0, &c, 1);
 	}

@@ -61,6 +61,8 @@ int	ft_atol_safe(char *str, long *result)
 	while (ft_isdigit(*str))
 	{
 		res = (res * 10) + (*str - '0');
+		if (res > 2147483648L)
+			return (0);
 		str++;
 	}
 	res *= sign;
